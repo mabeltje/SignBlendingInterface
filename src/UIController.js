@@ -96,6 +96,11 @@ class UIController {
       blendingToggleButton.innerHTML = this.blending
         ? "Disable Blending"
         : "Enable Blending";
+      this.updateSequenceUI();
+      this.showNotification(
+        `Blending is now ${this.blending ? "enabled" : "disabled"}`,
+        "info"
+      );
     };
     headerContainer.appendChild(blendingToggleButton);
 
