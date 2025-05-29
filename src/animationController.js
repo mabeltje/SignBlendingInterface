@@ -5,7 +5,7 @@ class AnimationController {
     this.scene = scene;
     this.characterController = characterController;
     this.isPlaying = isPlaying;
-    this.transitionDuration = 0.5; // Duration for blending animations hardcoded for now
+    this.transitionSpeeds = []; // Duration for blending animations hardcoded for now
   }
 
   // Initialize the AnimationController
@@ -120,17 +120,13 @@ class AnimationController {
         const currentAnimation = animationGroups[currentIndex];
 
         if (blending) {
-          // this.scene.animationPropertiesOverride =
-          //   new BABYLON.AnimationPropertiesOverride();
-          // this.scene.animationPropertiesOverride.enableBlending = true;
-          // this.scene.animationPropertiesOverride.blendingSpeed = 0.05;
-
+          console.log("Blending speed for animation:", currentAnimation, currentIndex, this.transitionSpeeds[currentIndex]);
           // Enable blending for all targeted animations
           currentAnimation.targetedAnimations.forEach((targetedAnim) => {
             const anim = targetedAnim.animation;
             anim.enableBlending = true;
             // max blending speed 0.13, min 0.02
-            anim.blendingSpeed = 0.05; // Set blending speed
+            anim.blendingSpeed = this.transitionSpeeds[currentIndex] || 0.05; // Default to 0.05 if not set
           });
         }
 

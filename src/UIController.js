@@ -317,7 +317,9 @@ class UIController {
       const frameInfo = document.createElement("span");
       frameInfo.id = `frame-info-${sign.name}`;
       frameInfo.className = "sign-description";
-      frameInfo.textContent = `Frames: ${availableSignsMap[sign.name].start} - ${availableSignsMap[sign.name].end}`;
+      frameInfo.textContent = `Frames: ${
+        availableSignsMap[sign.name].start
+      } - ${availableSignsMap[sign.name].end}`;
       signInfo.appendChild(frameInfo);
 
       signItem.appendChild(signInfo);
@@ -393,6 +395,9 @@ class UIController {
 
     // Create sequence items
     this.sequenceItems.forEach((item, index) => {
+      console.log("Item index:", index);
+      console.log("Item data:", item);
+
       const sequenceItem = document.createElement("div");
       sequenceItem.className = "sequence-item";
       sequenceItem.id = `sequence-item-${index + 1}`;
@@ -411,7 +416,9 @@ class UIController {
       const frameSpan = document.createElement("span");
       frameSpan.className = "sequence-item-frames";
 
-      frameSpan.textContent = `Frames: ${availableSignsMap[item.sign.name].start} - ${availableSignsMap[item.sign.name].end}`;
+      frameSpan.textContent = `Frames: ${
+        availableSignsMap[item.sign.name].start
+      } - ${availableSignsMap[item.sign.name].end}`;
       signInfo.appendChild(frameSpan);
 
       sequenceItem.appendChild(signInfo);
@@ -436,7 +443,6 @@ class UIController {
       editButton.onclick = (e) => {
         e.stopPropagation();
         console.log("Editing sign:", item);
-        // 
         this.characterController.loadAnimation(item.sign.name);
         this.showFrameEditor(item.sign, signInfo);
       };
@@ -452,6 +458,60 @@ class UIController {
 
       sequenceItem.appendChild(controls);
       sequenceContainer.appendChild(sequenceItem);
+
+      // Blending settings block
+      if (this.blending) {
+        if (this.sequenceItems.length > 1) {
+          // Add separator for all but the last item
+          if (index < this.sequenceItems.length - 1) {
+            const separator = document.createElement("div");
+            separator.className = "sequence-item-separator";
+            
+            // Blending info
+            const blendingInfo = document.createElement("div");
+            blendingInfo.className = "sequence-item-info";
+
+            const nameSpan = document.createElement("span");
+            nameSpan.className = "sequence-item-name";
+            nameSpan.textContent = "Blendingspeed";
+            blendingInfo.appendChild(nameSpan);
+
+            // Add slider container
+            const sliderContainer = document.createElement("div");
+            sliderContainer.className = "blending-slider-container";
+
+            // Add slider
+            const slider = document.createElement("input");
+            slider.type = "range";
+            slider.min = "0.02";
+            slider.max = "0.13";
+            slider.step = "0.01";
+            slider.value = this.animationController.transitionSpeeds[index] || "0.05"; // Default to 0.05 if not set
+            slider.className = "blending-slider";
+            slider.title = "Adjust blending speed";
+
+            // Add value display
+            const valueDisplay = document.createElement("span");
+            valueDisplay.className = "blending-value";
+            valueDisplay.textContent = slider.value;
+
+            // Update value display when slider changes
+            slider.oninput = () => {
+                valueDisplay.textContent = slider.value;
+                this.animationController.transitionSpeeds.splice(index, 1, parseFloat(slider.value));
+
+                console.log("Transitionspeeds:", this.animationController.transitionSpeeds);
+            };
+
+            sliderContainer.appendChild(slider);
+            sliderContainer.appendChild(valueDisplay);
+            blendingInfo.appendChild(sliderContainer);
+
+            separator.appendChild(blendingInfo);
+            sequenceContainer.appendChild(separator);
+          }
+        }
+      }
     });
   }
 
@@ -494,7 +554,6 @@ class UIController {
   // Show frame editor modal for a specific sign
   showFrameEditor(sign, frameInfoElement) {
     this.frameEditor.show(sign, frameInfoElement);
-
   }
 
   // Remove an item from the sequence
@@ -505,7 +564,7 @@ class UIController {
     this.updateSequenceUI();
   }
 
-    // Show notification to user
+  // Show notification to user
   showNotification(message, type = "info") {
     // Remove any existing notifications
     const existingNotification = document.querySelector(".notification");
