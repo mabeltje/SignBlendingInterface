@@ -13,7 +13,11 @@ class AnimationController {
     this.sequenceItems = sequenceItems;
   }
 
-  // Play a single sign animation
+  /**
+   * Plays a single sign animation.
+   * @param {string} signName - The name of the sign animation to play.
+   * @param {HTMLElement} signItem - The HTML element representing the sign item, used for UI updates.
+   */
   async playSign(signName, signItem) {
     console.log(`Playing sign: ${signName}`);
 
@@ -38,6 +42,12 @@ class AnimationController {
     }
   }
 
+  /**
+   * Plays a sequence of animations with optional blending.
+   * @param {Array} signNames - Array of sign names to play in sequence.
+   * @param {boolean} blending - Whether to enable blending between animations, defaults to false.
+   * @param {boolean} isRecording - Whether to record the animation sequence.
+   */
   async playSequence(signNames, blending = false, isRecording) {
     if (!this.characterController) {
       console.warn("Character controller not available for blending");
@@ -86,7 +96,7 @@ class AnimationController {
       }
       this.recorder = recorder;
 
-      // Add startup frames
+      // TODO: Add startup frames
 
       // Try to start recording
       if (this.recorder) {
@@ -120,12 +130,20 @@ class AnimationController {
         const currentAnimation = animationGroups[currentIndex];
 
         if (blending) {
-          console.log("Blending speed for animation:", currentAnimation, currentIndex, this.transitionSpeeds[currentIndex]);
+          console.log(
+            "Blending speed for animation:",
+            currentAnimation,
+            currentIndex,
+            this.transitionSpeeds[currentIndex]
+          );
           // Enable blending for all targeted animations
           currentAnimation.targetedAnimations.forEach((targetedAnim) => {
             const anim = targetedAnim.animation;
             anim.enableBlending = true;
-            anim.blendingSpeed = this.transitionSpeeds[currentIndex -1] || 0.05; // Default to 0.05 if not set
+
+            // Get the blending speed from the transitionSpeeds array
+            anim.blendingSpeed =
+              this.transitionSpeeds[currentIndex - 1] || 0.05; // Default to 0.05 if not set
           });
         }
 
@@ -160,8 +178,7 @@ class AnimationController {
             if (isRecording && this.recorder) {
               try {
                 console.log("Stopping recording...", this.recorder);
-                this.recorder.stopRecording()
-                
+                this.recorder.stopRecording();
               } catch (error) {
                 console.error("Error stopping recording:", error);
               }

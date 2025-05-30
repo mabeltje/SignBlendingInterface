@@ -16,6 +16,8 @@ class FrameEditor {
     this.scene = scene;
   }
 
+  // Show the frame editor modal for a specific sign
+  // This function creates the modal, sets up event listeners, and handles the frame editing logic
   show(sign, frameInfoElement) {
     const modal = this.createFrameEditorModal(sign);
     document.body.appendChild(modal);
@@ -93,6 +95,7 @@ class FrameEditor {
   setupFrameEditorEventListeners(elements, sign, frameInfoElement) {
     let autoTestTimeout;
 
+    // Update the preview text and values based on the current input values
     const updatePreview = (slider) => {
       const start = parseInt(elements.startInput.value) || 0;
       const end = parseInt(elements.endInput.value) || 1;
@@ -136,6 +139,7 @@ class FrameEditor {
       this.UIcontroller.updateSequenceUI();
     };
 
+    // Auto-test the animation when the start or end frame changes
     const autoTestAnimation = () => {
       const newStart = parseInt(elements.startInput.value) || 0;
       const newEnd = parseInt(elements.endInput.value) || 1;
@@ -164,6 +168,7 @@ class FrameEditor {
       }, 800);
     };
 
+    // Close the modal and clean up
     const closeModal = () => {
       if (autoTestTimeout) {
         clearTimeout(autoTestTimeout);
@@ -171,6 +176,7 @@ class FrameEditor {
       document.body.removeChild(elements.modal);
     };
 
+    // Handle testing the animation with the current start and end frames
     const handleTestAnimation = async () => {
       const newStart = parseInt(elements.startInput.value) || 0;
       const newEnd = parseInt(elements.endInput.value) || 1;
@@ -201,6 +207,7 @@ class FrameEditor {
       elements.testButton.innerHTML = "🎬 Test Animation";
     };
 
+    // Handle saving changes to the start and end frames
     const handleSaveChanges = async () => {
       const newStart = parseInt(elements.startInput.value) || 0;
       const newEnd = parseInt(elements.endInput.value) || 1;

@@ -36,6 +36,12 @@ class CharacterController {
     );
   }
 
+  /**
+   * Loads the character mesh and sets up the eye look controllers.
+   * @returns {Promise} A promise that resolves when the mesh is loaded.
+   * This function imports the character mesh from a GLB file and sets up the eye look controllers
+   * to make the character look at the camera position.
+   */
   async loadMesh() {
     const loadedResults = await ImportMeshAsync(
       "glassesGuySignLab.glb",
@@ -92,7 +98,13 @@ class CharacterController {
     return loadedResults;
   }
 
-  // Load a single animation
+  /**
+   * Loads an animation for the character based on the sign name.
+   * @param {string} signName - The name of the sign to load the animation for.
+   * @returns {Promise} A promise that resolves to the loaded animation group.
+   * This function checks if the animation is already loaded to prevent duplicates,
+   * and if not, it imports the animation from the specified file.
+   */
   async loadAnimation(signName) {
     try {
       // Get the sign file from the availableSigns array
@@ -201,7 +213,16 @@ class CharacterController {
     }
   }
 
-  // Get the frame range from the availableSignsMap, otherwise use the animationGroup's from and to values
+  /**
+   * Gets the frame range for a given sign name and animation group.
+   * @param {string} signName - The name of the sign to get the frame range for.
+   * @param {BABYLON.AnimationGroup} animationGroup - The animation group to get the frame range from.
+   * @returns {Object} An object containing the start and end frames for the animation.
+   * This function checks if the sign has predefined start and end frames,
+   * and if not, it uses the animation group's from and to values as defaults.
+   * If the sign is not found, it logs an error and returns null.
+   * If the sign has no start or end frame defined, it will use the animation group's from and to values.
+   */
   getFrameRange(signName, animationGroup) {
     const sign = availableSignsMap[signName];
     if (!sign) {
@@ -239,23 +260,19 @@ class CharacterController {
     };
   }
 
-  /*
-    Function: retargetAnimWithBlendshapes
-
-    Description:
-    This function takes a target mesh and an animation group and retargets the animation group
-    to the target mesh. Most importantly, it will also retarget the animation group to the blendshapes
-    which babylon does not do by default.
-
-    Parameters:
-    - targetMeshAsset: The mesh to retarget the animation to.
-    - animGroup: The animation group to retarget.
-    - cloneName: The name of the cloned animation group.
-
-    Returns:
-    Void, but the animation group will be retargeted to the target mesh.
-    And we are able to play this animation group on the target mesh through the scene object.
-*/
+  /**
+   * Retargets an animation to the target mesh with blendshapes.
+   * @param {BABYLON.AbstractMesh} targetMeshAsset - The target mesh to retarget the animation to.
+   * @param {BABYLON.AnimationGroup} animGroup - The animation group to retarget.
+   * @param {string} cloneName - The name for the cloned animation group, defaults to "anim".
+   * @returns {BABYLON.AnimationGroup} The retargeted animation group.
+   * This function clones the animation group and sets the targets to the linked transform nodes
+   * of the target mesh's skeleton bones or morph targets.
+   * If the target name does not match any bone, it will look for morph targets.
+   * If no morph target is found, it will return the last morph target used.
+   * If the target mesh does not have a skeleton, it will return null.
+   * @throws Will throw an error if the morph target manager is not found.
+   */
   retargetAnimWithBlendshapes(targetMeshAsset, animGroup, cloneName = "anim") {
     console.log("Retargeting animation to target mesh...");
 
@@ -324,7 +341,6 @@ class CharacterController {
     return -1;
   }
 
-  // Delete the keyframes outside the start and end frames from the animationgroup
   hardTrim(animationGroup, start, end) {
     animationGroup.targetedAnimations.forEach((e) => {
       let keys = e.animation.getKeys();
@@ -479,19 +495,6 @@ class CharacterController {
     rootMesh.rotation = new Vector3(0, Math.PI, 0);
 
     return rootMesh;
-  }
-
-  getAnimationGroup(signName) {
-    const animationGroup = this.animationQueue.find(
-      (group) => group.SignName === signName
-    )?.animationGroup;
-
-    if (!animationGroup) {
-      console.error(`Animation group not found: ${signName}`);
-      return null;
-    }
-
-    return animationGroup;
   }
 }
 

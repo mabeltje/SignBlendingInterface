@@ -33,8 +33,6 @@ BABYLON.SceneLoader.OnPluginActivatedObservable.add(function (loader) {
 
   const isPlaying = false;
 
-
-
   // Initialize character controller
   const characterController = new CharacterController(
     scene,
@@ -59,9 +57,6 @@ BABYLON.SceneLoader.OnPluginActivatedObservable.add(function (loader) {
     isPlaying
   );
   uiController.init();
-
-  // Load an initial animation as an example
-  // await characterController.loadAnimation('HALLO');
 
   scene.debugLayer.show();
 

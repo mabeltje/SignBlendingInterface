@@ -44,6 +44,7 @@ class UIController {
     this.createDragDropUI();
   }
 
+  // Create the drag and drop UI layout
   createDragDropUI() {
     this.createMainContainer();
     this.createHeader();
@@ -293,6 +294,7 @@ class UIController {
       return 0; // Names are equal
     });
 
+    // Populate the library with sign items
     this.availableSigns.forEach((sign) => {
       const signItem = document.createElement("div");
       signItem.className = "sign-item";
@@ -362,6 +364,8 @@ class UIController {
     });
   }
 
+  // Update the frame information in the library
+  // This function is triggered when the frame editor updates a sign's frames
   updateLibraryFrames() {
     const signItems = document.querySelectorAll(".sign-item");
     signItems.forEach((item) => {
@@ -439,6 +443,7 @@ class UIController {
         this.animationController.playSign(item.sign.name, sequenceItem);
       controls.appendChild(playButton);
 
+      // Edit frames button
       const editButton = document.createElement("button");
       editButton.className = "edit-button small-button";
       editButton.innerHTML = "⚙";
@@ -469,7 +474,7 @@ class UIController {
           if (index < this.sequenceItems.length - 1) {
             const separator = document.createElement("div");
             separator.className = "sequence-item-separator";
-            
+
             // Blending info
             const blendingInfo = document.createElement("div");
             blendingInfo.className = "sequence-item-info";
@@ -489,7 +494,8 @@ class UIController {
             slider.min = "0.02";
             slider.max = "0.13";
             slider.step = "0.01";
-            slider.value = this.animationController.transitionSpeeds[index] || "0.05"; // Default to 0.05 if not set
+            slider.value =
+              this.animationController.transitionSpeeds[index] || "0.05"; // Default to 0.05 if not set
             slider.className = "blending-slider";
             slider.title = "Adjust blending speed";
 
@@ -500,10 +506,17 @@ class UIController {
 
             // Update value display when slider changes
             slider.oninput = () => {
-                valueDisplay.textContent = slider.value;
-                this.animationController.transitionSpeeds.splice(index, 1, parseFloat(slider.value));
+              valueDisplay.textContent = slider.value;
+              this.animationController.transitionSpeeds.splice(
+                index,
+                1,
+                parseFloat(slider.value)
+              );
 
-                console.log("Transitionspeeds:", this.animationController.transitionSpeeds);
+              console.log(
+                "Transitionspeeds:",
+                this.animationController.transitionSpeeds
+              );
             };
 
             sliderContainer.appendChild(slider);

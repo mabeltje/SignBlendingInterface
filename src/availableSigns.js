@@ -1,24 +1,6 @@
 // Available sign animations, this is hardcoded for now
-// TODO: will have to inspect folder, and do this automatically
-export const availableSigns2 = [
-  { name: "HALLO", file: "signs/HALLO-C_250226_1.glb", start:60, end: 100 },
-  { name: "SCHOOL", file: "signs/SCHOOL-D_250226_1.glb", start: 40, end: 110 },
-  { name: "HAARLEM", file: "signs/HAARLEM_250226_1.glb", start: 15, end: 90 },
-  { name: "KRIJGEN-A", file: "signs/KRIJGEN-A_250228_5.glb", start: 60, end: 110 },
-  { name: "LELYSTAD", file: "signs/LELYSTAD_250314_1.glb", start:55, end: 130 },
-  { name: "LES", file: "signs/LES_250228_2.glb", start: 85, end: 150 },
-  { name: "PROBEREN-E", file: "signs/PROBEREN-E_250226_2.glb", start: 50, end: 117 },
-  { name: "SCHULDGEVEN", file: "signs/SCHULDGEVEN_250226_1.glb", start: 50, end: 90 },
-  { name: "VRAGEN-A", file: "signs/VRAGEN-A_250226_1.glb", start: 65, end: 100 },
-  { name: "WACHTEN-B", file: "signs/WACHTEN-B_250226_1.glb", start: 30, end: 103 },
-  {name: "lelystad", file: "signs/LELYSTAD_250314_1_GlassesGuyRecord_C_1.glb", start:55, end: 130 },
-  {name: "2", file: "signs/mabel/2.glb", start: 0, end: 200 },
-  {name: "3", file: "signs/mabel/3.glb", start: 0, end: 200 },
-  {name: "4", file: "signs/mabel/4.glb", start: 0, end: 200 },
-  {name: "Zin_250528_75.glb", file: "signs/mabel/Zin_250528_75.glb", start: 0, end: 500 },
-  {name: "Trein", file: "signs/mabel/Trein_250528_59.glb", start: 0, end: 500 },
-];
 
+// Train anouncement signs
 export const availableSigns = [
   {name: "1", file: "signs/trein/1.glb", start: 90, end: 140 },
   {name: "2", file: "signs/trein/2.glb", start: 95, end: 150 },
@@ -87,3 +69,23 @@ export const availableSignsMap = availableSigns.reduce((acc, sign) => {
   return acc;
 }
 , {});  
+
+// Old dataset, used for testing
+export const availableSigns2 = [
+  { name: "HALLO", file: "signs/HALLO-C_250226_1.glb", start:60, end: 100 },
+  { name: "SCHOOL", file: "signs/SCHOOL-D_250226_1.glb", start: 40, end: 110 },
+  { name: "HAARLEM", file: "signs/HAARLEM_250226_1.glb", start: 15, end: 90 },
+  { name: "KRIJGEN-A", file: "signs/KRIJGEN-A_250228_5.glb", start: 60, end: 110 },
+  { name: "LELYSTAD", file: "signs/LELYSTAD_250314_1.glb", start:55, end: 130 },
+  { name: "LES", file: "signs/LES_250228_2.glb", start: 85, end: 150 },
+  { name: "PROBEREN-E", file: "signs/PROBEREN-E_250226_2.glb", start: 50, end: 117 },
+  { name: "SCHULDGEVEN", file: "signs/SCHULDGEVEN_250226_1.glb", start: 50, end: 90 },
+  { name: "VRAGEN-A", file: "signs/VRAGEN-A_250226_1.glb", start: 65, end: 100 },
+  { name: "WACHTEN-B", file: "signs/WACHTEN-B_250226_1.glb", start: 30, end: 103 },
+  {name: "lelystad", file: "signs/LELYSTAD_250314_1_GlassesGuyRecord_C_1.glb", start:55, end: 130 },
+  {name: "2", file: "signs/mabel/2.glb", start: 0, end: 200 },
+  {name: "3", file: "signs/mabel/3.glb", start: 0, end: 200 },
+  {name: "4", file: "signs/mabel/4.glb", start: 0, end: 200 },
+  {name: "Zin_250528_75.glb", file: "signs/mabel/Zin_250528_75.glb", start: 0, end: 500 },
+  {name: "Trein", file: "signs/mabel/Trein_250528_59.glb", start: 0, end: 500 },
+];
