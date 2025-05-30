@@ -46,7 +46,7 @@ class FrameEditor {
         <div class="frame-editor-body">
           <div class="frame-control">
             <label for="start-frame">Start Frame: <span id="start-value">${frameStart}</span></label>
-            <input type="range" id="start-frame" value="${frameStart}" min="0" max="200" step="1" class="frame-slider">
+            <input type="range" id="start-frame" value="${frameStart}" min="0" max="250" step="1" class="frame-slider">
           </div>
           <div class="frame-control">
             <label for="end-frame">End Frame: <span id="end-value">${frameEnd}</span></label>
@@ -127,6 +127,7 @@ class FrameEditor {
       // }
 
       const isValid = start < end;
+      console.log("Is valid frame range:", isValid);
       elements.previewText.style.color = isValid ? "#333" : "#F44336";
       elements.saveButton.disabled = !isValid;
       elements.testButton.disabled = !isValid;

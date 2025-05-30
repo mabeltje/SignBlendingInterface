@@ -125,8 +125,7 @@ class AnimationController {
           currentAnimation.targetedAnimations.forEach((targetedAnim) => {
             const anim = targetedAnim.animation;
             anim.enableBlending = true;
-            // max blending speed 0.13, min 0.02
-            anim.blendingSpeed = this.transitionSpeeds[currentIndex] || 0.05; // Default to 0.05 if not set
+            anim.blendingSpeed = this.transitionSpeeds[currentIndex -1] || 0.05; // Default to 0.05 if not set
           });
         }
 

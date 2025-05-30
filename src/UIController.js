@@ -400,9 +400,7 @@ class UIController {
 
     // Create sequence items
     this.sequenceItems.forEach((item, index) => {
-      console.log("Item index:", index);
-      console.log("Item data:", item);
-
+      // Create a container for each sequence item
       const sequenceItem = document.createElement("div");
       sequenceItem.className = "sequence-item";
       sequenceItem.id = `sequence-item-${index + 1}`;
