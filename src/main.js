@@ -58,7 +58,8 @@ BABYLON.SceneLoader.OnPluginActivatedObservable.add(function (loader) {
   );
   uiController.init();
 
-  scene.debugLayer.show();
+  // Uncomment to show debug layer
+  // scene.debugLayer.show();
 
   // Render
   engine.runRenderLoop(function () {
