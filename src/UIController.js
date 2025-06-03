@@ -402,6 +402,7 @@ class UIController {
       button.disabled = false;
     });
 
+
     // Create sequence items
     this.sequenceItems.forEach((item, index) => {
       // Create a container for each sequence item

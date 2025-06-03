@@ -7,6 +7,7 @@ import AnimationController from "./animationController.js";
 import UIController from "./UIController.js";
 import { availableSigns } from "./availableSigns.js";
 import { GLTFLoaderAnimationStartMode } from "babylonjs-loaders";
+import { getQueryParam, handleUrlSequence } from "./urlController.js";
 
 // Set the animation start mode to NONE
 // This is a workaround to fix the bug where the animation starts playing automatically
@@ -57,6 +58,9 @@ BABYLON.SceneLoader.OnPluginActivatedObservable.add(function (loader) {
     isPlaying
   );
   uiController.init();
+
+  // Handle URL sequence if present
+  handleUrlSequence(uiController, animationController, availableSigns);
 
   // Uncomment to show debug layer
   // scene.debugLayer.show();
