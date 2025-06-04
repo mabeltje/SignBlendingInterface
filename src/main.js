@@ -17,6 +17,8 @@ BABYLON.SceneLoader.OnPluginActivatedObservable.add(function (loader) {
   }
 });
 
+// Test to check if auto pushing is working
+
 (async function () {
   // Make scene
   const { canvas, engine, scene, cameraController, light, ground } =
