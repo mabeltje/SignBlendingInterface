@@ -317,7 +317,9 @@ class UIController {
 
       const nameSpan = document.createElement("span");
       nameSpan.className = "sign-name";
-      nameSpan.textContent = sign.name;
+
+      // Filter out _ from name and replace with space
+      nameSpan.textContent = sign.name.replace(/_/g, " ");
       signInfo.appendChild(nameSpan);
 
       // Frame info display
@@ -417,7 +419,7 @@ class UIController {
 
       const nameSpan = document.createElement("span");
       nameSpan.className = "sequence-item-name";
-      nameSpan.textContent = item.sign.name;
+      nameSpan.textContent = item.sign.name.replace(/_/g, " ");
       signInfo.appendChild(nameSpan);
 
       // Frame range display
