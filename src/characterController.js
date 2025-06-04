@@ -48,10 +48,6 @@ class CharacterController {
       this.scene
     );
 
-    // Eye blinking does not work yet
-    // const eyeBlinkController = new EyeBlinkController(loadedResults);
-    // eyeBlinkController.createEyeBlinkAnimation(this.scene);
-
     const leftEyeBone = loadedResults.skeletons[0].bones.find(
       (bone) => bone.name === "LeftEye"
     );
@@ -63,26 +59,11 @@ class CharacterController {
       console.error("Left or Right Eye bone not found in the skeleton");
     }
 
-    const lookCtrLeft = new BoneLookController(
-      loadedResults,
-      leftEyeBone,
-      this.cameraController.camera.position
-    );
 
-    const lookCtrRight = new BoneLookController(
-      loadedResults,
-      rightEyeBone,
-      this.cameraController.camera.position
-    );
-
-    // todo, FIX THIS!
-    // // Set the look controllers to update every frame
-    // this.scene.onBeforeRenderObservable.add(() => {
-    //   if (lookCtrLeft && lookCtrRight) {
-    //     lookCtrLeft.update();
-    //     lookCtrRight.update();
-    //   }
-    // });
+    // // Initialize eye blink controller
+    // this.eyeBlinkController = new EyeBlinkController(loadedResults, this.scene);
+    // this.eyeBlinkController.leftEyeBone = leftEyeBone;
+    // this.eyeBlinkController.rightEyeBone = rightEyeBone;
 
     // Always select the character mesh as active mesh
     loadedResults.meshes.forEach((mesh) => {
@@ -141,8 +122,11 @@ class CharacterController {
       let myAnimation = result.animationGroups.find(
         (x, i) => x.name === "Unreal Take" && i != 0
       );
-      // myAnimation = this.retargetAnimWithBlendshapes(this.character, myAnimation);
 
+      const retargetedAnimation = this.retargetAnimWithBlendshapes(this.character, myAnimation, signName);
+
+      myAnimation.dispose();
+      myAnimation = retargetedAnimation;
       console.log("myAnimation:", myAnimation);
 
       if (!myAnimation) {
@@ -161,13 +145,6 @@ class CharacterController {
 
       // Hard trim of the animation, if needed
       // myAnimation = this.hardTrim(myAnimation, startFrame, endFrame);
-
-      // const easingFunction = new BABYLON.BackEase(10);
-      // easingFunction.setEasingMode(BABYLON.EasingFunction.EASINGMODE_EASEIN);
-
-      // Remove the animation from the hips
-      // console.log("Animation group before removing hips:", myAnimation);
-      // myAnimation.targetedAnimations[0].animation.keys = [];
 
       myAnimation.targetedAnimations.forEach((targetedAnim) => {
         if (targetedAnim.target !== null && targetedAnim.animation !== null) {
