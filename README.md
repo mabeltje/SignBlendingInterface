@@ -29,16 +29,13 @@ To get the project up and running locally, follow these steps:
     git clone <repository_url>
     cd SignBlendingInterface
     ```
-2.  **Open in a browser:**
-    This is a client-side web application. You can open the `index.html` file directly in your web browser.
-    Alternatively, for better performance and to avoid potential CORS issues if you integrate external assets later, you can use a simple local HTTP server (e.g., Python's `http.server`):
+2.  **Run the aplication with:**
     ```bash
-    # Navigate to the root directory of your project
-    cd SignBlendingInterface
-    # For Python 3
-    python -m http.server
-    # Then open your browser to http://localhost:8000
+    npm run dev
     ```
+    This will start a development server, and you can access the application in your web browser at ```http://localhost:5173```.
+
+    
 
 ## Core Components (Babylon.js)
 The application utilizes several core components from Babylon.js to create the 3D experience:
