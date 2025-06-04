@@ -1,0 +1,31 @@
+name: Deploy Scriptie branch to alternate repo
+
+on:
+  push:
+    branches:
+      - Scriptie # This will trigger the workflow on pushes to the 'Scriptie' branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v3
+
+      - name: Build project
+        run: |
+          echo "Running your build script"
+          npm install
+          npm run build
+
+      - name: Deploy to alternate repo
+        run: |
+          cd dist  # or whatever folder is your build output
+          git init
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git remote add deploy https://x-access-token:${{ secrets.PUSH_TOKEN }}@github.com/mabeltje/Scriptie_SignLanuageInterface.git
+          git add .
+          git commit -m "Deploy from primary-repo@${{ github.sha }}"
+          git push --force deploy master:gh-pages
