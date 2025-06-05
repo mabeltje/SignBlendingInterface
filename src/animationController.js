@@ -1,3 +1,5 @@
+import VideoRecorder from "./videoRecorder.js";
+
 // Class to contol the animations of the avatar
 class AnimationController {
   constructor(engine, scene, characterController, isPlaying) {
@@ -5,7 +7,8 @@ class AnimationController {
     this.scene = scene;
     this.characterController = characterController;
     this.isPlaying = isPlaying;
-    this.transitionSpeeds = []; // Duration for blending animations hardcoded for now
+    this.transitionSpeeds = [];
+    this.recorder = null; // Video recorder instance
   }
 
   // Initialize the AnimationController
@@ -83,27 +86,34 @@ class AnimationController {
 
     if (isRecording) {
       console.log("Starting video recording...");
-      const recorder = new BABYLON.VideoRecorder(this.engine, this.scene, {
-        fps: 60,
-        mimeType: "video/webm", // or "video/webm;codecs=vp9"
-      });
+      const canvas = this.engine.getRenderingCanvas();
+      this.recorder = new VideoRecorder(this.engine, this.scene, canvas);
 
-      console.log("Video recorder created:", recorder);
+      console.log("Video recorder created:", this.recorder);
 
-      if (!recorder) {
+      if (!this.recorder) {
         console.error("Failed to create video recorder");
         return;
       }
-      this.recorder = recorder;
-
-      // TODO: Add startup frames
 
       // Try to start recording
       if (this.recorder) {
-        console.log("Starting recording...");
-        const animationNames = signNames.join("-") + ".webm"; // Use the sign names as the filename
-        this.recorder.startRecording(animationNames, 60);
-        console.log("Recording started successfully", this.recorder);
+        try {
+          const animationNames = signNames.join("-") + ".mp4";
+          await this.recorder.startRecording(animationNames, {
+            fps: 60,
+            videoBitrate: 40000000, // Fixed 40 Mbps
+          });
+          console.log("Recording started successfully at 40 Mbps");
+        } catch (error) {
+          console.error("Failed to start recording:", error);
+          this.recorder = null;
+        }
+
+        // console.log("Starting recording...");
+        // const animationNames = signNames.join("-") + ".webm"; // Use the sign names as the filename
+        // this.recorder.startRecording(animationNames, 60);
+        // console.log("Recording started successfully", this.recorder);
       }
     }
 
