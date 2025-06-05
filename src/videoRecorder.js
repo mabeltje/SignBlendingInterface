@@ -36,7 +36,7 @@ class VideoRecorder {
       fps = 60,
       videoBitrate = 10000000, // 10 Mbps default
       audioBitrate = 128000,
-      preset = 'high' // 'low', 'medium', 'high', 'ultra'
+      preset = 'ultra' // 'low', 'medium', 'high', 'ultra'
     } = options;
 
     // Quality presets
@@ -107,7 +107,7 @@ class VideoRecorder {
       });
 
       // Start recording with small chunks for better performance
-      this.mediaRecorder.start(100); // Capture data every 100ms
+      this.mediaRecorder.start(16); // Capture data every 100ms
       this.isRecording = true;
       
       console.log(`Recording started at ${fps}fps with ${settings.videoBitrate / 1000000}Mbps bitrate`);

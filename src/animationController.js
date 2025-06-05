@@ -99,7 +99,7 @@ class AnimationController {
       // Try to start recording
       if (this.recorder) {
         try {
-          const animationNames = signNames.join("-") + ".mp4";
+          const animationNames = signNames.join("-") + ".webm";
           await this.recorder.startRecording(animationNames, {
             fps: 60,
             videoBitrate: 40000000, // Fixed 40 Mbps
