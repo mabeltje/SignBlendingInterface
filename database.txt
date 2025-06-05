@@ -72,9 +72,11 @@ https://signlab.mabbel.nl/?sequence=BESTE_REIZIGERS,TREIN,5,VOOR,HALF,6,NAAR,DIE
 https://signlab.mabbel.nl/?sequence=ZIN_2
 
 https://signlab.mabbel.nl/?sequence=BESTE_REIZIGERS,SPRINTER,NAAR,HAARLEM,10,VOOR,3,VERTREKT,VAN,SPOOR,2
+https://signlab.mabbel.nl/?sequence=BESTE_REIZIGERS,SPRINTER,NAAR,HAARLEM,10,VOOR,3,VERTREKT_VAN,SPOOR,2
 https://signlab.mabbel.nl/?sequence=ZIN_3
 
 https://signlab.mabbel.nl/?sequence=BESTE_REIZIGERS,TREIN,VAN,KWART_OVER,4,VERTREKT,VAN,PERRON,3
+https://signlab.mabbel.nl/?sequence=BESTE_REIZIGERS,TREIN,VAN,KWART_OVER,4,VERTREKT_VAN,PERRON,3
 https://signlab.mabbel.nl/?sequence=ZIN_4
 
 https://signlab.mabbel.nl/?sequence=BESTE_REIZIGERS,INTERCITY,NAAR,GRONINGEN,HALF,2,VERTRAAGD
@@ -93,5 +95,8 @@ https://signlab.mabbel.nl/?sequence=BESTE_REIZIGERS,SPRINTER,VAN,AMSTERDAM,VAN,5
 https://signlab.mabbel.nl/?sequence=ZIN_9
 
 ?sequence=BESTE_REIZIGERS,TREIN,NAAR,DIEMEN,HALF,11,
+
+https://signlab.mabbel.nl/?sequence=BESTE_REIZIGERS,INTERCITY,NAAR,DIEMEN,VERTREKT,OVER,5,MINUTEN
+https://signlab.mabbel.nl/?sequence=BESTE_REIZIGERS,INTERCITY,NAAR,DIEMEN,VERTREKT_OVER,5,MINUTEN
 
 

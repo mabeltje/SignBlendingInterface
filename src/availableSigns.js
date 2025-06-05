@@ -50,7 +50,7 @@ export const availableSigns = [
   {name: "MINUTEN", file: "signs/trein/Minuten.glb", start: 85, end: 130 },
   {name: "MINUUT", file: "signs/trein/Minuut.glb", start: 90, end: 135 },
   {name: "BESTE_REIZIGERS", file: "signs/trein/Beste_Reizigers.glb", start: 85, end: 250 },
-  {name: "ZIN_1 ", file: "signs/trein/Zin_1.glb"},
+  {name: "ZIN_1", file: "signs/trein/Zin_1.glb"},
   {name: "ZIN_2", file: "signs/trein/Zin_2.glb"},
   {name: "ZIN_3", file: "signs/trein/Zin_3.glb"},
   {name: "ZIN_4", file: "signs/trein/Zin_4.glb"},
