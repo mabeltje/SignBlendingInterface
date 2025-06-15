@@ -18,8 +18,6 @@ export function handleUrlSequence(uiController, animationController, availableSi
           uiController.addToSequence(signData);
         }
       });
-      // Play the sequence after UI is updated
-      // animationController.playSequence(signsToPlay, true, false); // Assuming blending is true and not recording for URL playback
     } else {
       console.warn("URL sequence parameter found but no valid signs to play.");
     }

@@ -29,6 +29,7 @@ export async function createScene() {
     width: 10,
     height: 10,
   });
+  
   const groundMaterial = new StandardMaterial("groundMat", scene);
   groundMaterial.diffuseColor = new Color3(0.2, 0.2, 0.2);
   ground.material = groundMaterial;

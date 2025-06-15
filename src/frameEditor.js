@@ -1,4 +1,6 @@
-import { availableSigns, availableSignsMap } from "./availableSigns.js";
+import {availableSignsMap} from "./availableSigns.js";
+
+// This class handles the frame editing modal for signs in the animation sequence
 class FrameEditor {
   constructor(
     scene,
@@ -111,24 +113,6 @@ class FrameEditor {
         end: end,
       };
 
-      // // This does not work yet, use auto test animation for now
-      // const animationGroup = this.scene.animationGroups.find(
-      //   (group) => group.name === sign.name
-      // );
-      // if (animationGroup) {
-      //   console.log("Found animation group:", animationGroup);
-
-      //   if (slider === "start") {
-      //     console.log("Goining to start frame:", start);
-      //     animationGroup.goToFrame(start);
-      //   } else if (slider === "end") {
-      //     console.log("Goining to end frame:", end);
-      //     animationGroup.goToFrame(end);
-      //   }
-
-      //   this.scene.render(); // Force one render pass after jumping to the frame
-      // }
-
       const isValid = start < end;
       console.log("Is valid frame range:", isValid);
       elements.previewText.style.color = isValid ? "#333" : "#F44336";
@@ -154,8 +138,6 @@ class FrameEditor {
         sign.start = newStart;
         sign.end = newEnd;
 
-        // this.animationController.clearCachedAnimation(sign.name);
-
         try {
           await this.animationController.playSign(sign.name);
         } catch (error) {
@@ -164,7 +146,6 @@ class FrameEditor {
 
         sign.start = originalStart;
         sign.end = originalEnd;
-        // this.animationController.clearCachedAnimation(sign.name);
       }, 800);
     };
 
@@ -201,7 +182,6 @@ class FrameEditor {
 
       sign.start = originalStart;
       sign.end = originalEnd;
-      // this.animationController.clearCachedAnimation(sign.name);
 
       elements.testButton.disabled = false;
       elements.testButton.innerHTML = "🎬 Test Animation";
@@ -225,12 +205,8 @@ class FrameEditor {
       elements.saveButton.innerHTML = "💾 Saving...";
 
       try {
-        // this.animationController.clearCachedAnimation(sign.name);
         sign.start = newStart;
         sign.end = newEnd;
-        // this.animationController.updateSignInMap(sign.name, newStart, newEnd);
-        // frameInfoElement.textContent = `Frames: ${sign.start} - ${sign.end}`;
-        // await this.animationController.saveSignsToFile();
         console.log("Available signs map after save:", availableSignsMap);
         closeModal();
       } catch (error) {

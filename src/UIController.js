@@ -15,7 +15,7 @@ class UIController {
     this.availableSigns = availableSigns;
     this.characterController = characterController;
     this.animationController = animationController;
-    this.sequenceItems = [];
+    this.sequenceItems = []; // Array to hold the sequence items
     this.isPlaying = isPlaying; // Flag to indicate if a sequence is currently playing
     this.nextItemId = 1; // For generating unique IDs for sequence items
     this.controlsEnabled = false; // Flag to enable/disable controls
@@ -179,6 +179,7 @@ class UIController {
     const sequenceControls = document.createElement("div");
     sequenceControls.className = "sequence-controls";
 
+    // Play sequence button
     const playSequenceButton = document.createElement("button");
     playSequenceButton.id = "play-sequence-button";
     playSequenceButton.className = "control-button play-sequence-button";
@@ -196,6 +197,7 @@ class UIController {
     };
     sequenceControls.appendChild(playSequenceButton);
 
+    // Clear sequence button
     const clearSequenceButton = document.createElement("button");
     clearSequenceButton.id = "clear-sequence-button";
     clearSequenceButton.className = "control-button clear-sequence-button";
@@ -207,6 +209,7 @@ class UIController {
     };
     sequenceControls.appendChild(clearSequenceButton);
 
+    // Record sequence button
     const recordSequenceButton = document.createElement("button");
     recordSequenceButton.id = "record-sequence-button";
     recordSequenceButton.className = "control-button record-sequence-button";

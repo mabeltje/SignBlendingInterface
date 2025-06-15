@@ -1,4 +1,4 @@
-// Available sign animations, this is hardcoded for now
+// Available sign animations
 
 // Train anouncement signs
 export const availableSigns = [

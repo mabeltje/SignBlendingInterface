@@ -55,12 +55,11 @@ The `AnimationController` class is responsible for managing animation playback a
 *   `main.js`: The entry point of the application, responsible for scene setup and initializing controllers.
 *   `UIController.js`: Manages all user interface elements and interactions.
 *   `AnimationController.js`: Controls the loading, playing, and blending of character animations.
-*   `CharacterController.js`: Handles the 3D character model, its loading, and basic movements.
+*   `CharacterController.js`: Handles the 3D character model, and its loading.
 *   `sceneController.js`: Responsible for setting up the initial 3D scene (camera, lights, ground).
 *   `availableSigns.js`: Defines the list of available sign language animations.
-*   `frameEditor.js`: (Likely) provides functionality for fine-tuning individual animation frames.
+*   `frameEditor.js`: Provides functionality for fine-tuning individual animation frames.
 *   `cameraController.js`: Manages camera behavior and controls.
-*   `eyeBlinkController.js`: Controls eye blink animations for the character.
 *   `styles.css`: Contains the CSS styling for the user interface.
 
 ## Video Recording
@@ -69,3 +68,24 @@ The application includes a `VideoRecorder` class that allows users to record the
 ### Usage
 To record a sequence, click the "Record Sequence" button before playing the animation. The video will be downloaded automatically once the recording is complete.
 
+## URL Feature
+The application supports a URL feature that allows users to share and load specific animation sequences directly through a URL. This feature is useful for sharing custom sequences with others or for quickly loading a predefined sequence.
+
+### Usage
+To use the URL feature, simply append the sequence of sign names to the URL as a query parameter. For example:
+```
+http://localhost:5173?sequence=sign1,sign2,sign3
+``` 
+or 
+```
+https://signlab.mabbel.nl/?sequence=sign1,sign2,sign3
+```
+where `sign1`, `sign2`, etc. are the names of the signs in the sequence. 
+
+For example, if you want to load a sequence of the sentence BESTE_REIZIGERS TREIN VAN 5 VOOR HALF 6 NAAR DIEMEN VERTRAAGD you would use:
+```
+https://signlab.mabbel.nl/?sequence=BESTE_REIZIGERS,TREIN,VAN,5,VOOR,HALF,6,NAAR,DIEMEN,VERTRAAGD
+```
+
+When the application loads, it will check for the `sequence` parameter in the URL and automatically populate the sequence builder with the specified signs.
+This will automatically load the sequence of signs specified in the URL.

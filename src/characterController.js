@@ -9,7 +9,6 @@ import {
   BoneLookController,
 } from "babylonjs";
 import { availableSigns, availableSignsMap } from "./availableSigns.js";
-import EyeBlinkController from "./eyeBlinkController.js";
 
 // Class to load and control the character
 class CharacterController {
@@ -37,33 +36,15 @@ class CharacterController {
   }
 
   /**
-   * Loads the character mesh and sets up the eye look controllers.
+   * Loads the character mesh.
    * @returns {Promise} A promise that resolves when the mesh is loaded.
-   * This function imports the character mesh from a GLB file and sets up the eye look controllers
-   * to make the character look at the camera position.
+   * This function imports the character mesh from a GLB file.
    */
   async loadMesh() {
     const loadedResults = await ImportMeshAsync(
       "glassesGuySignLab.glb",
       this.scene
     );
-
-    const leftEyeBone = loadedResults.skeletons[0].bones.find(
-      (bone) => bone.name === "LeftEye"
-    );
-
-    const rightEyeBone = loadedResults.skeletons[0].bones.find(
-      (bone) => bone.name === "RightEye"
-    );
-    if (!leftEyeBone || !rightEyeBone) {
-      console.error("Left or Right Eye bone not found in the skeleton");
-    }
-
-
-    // // Initialize eye blink controller
-    // this.eyeBlinkController = new EyeBlinkController(loadedResults, this.scene);
-    // this.eyeBlinkController.leftEyeBone = leftEyeBone;
-    // this.eyeBlinkController.rightEyeBone = rightEyeBone;
 
     // Always select the character mesh as active mesh
     loadedResults.meshes.forEach((mesh) => {
@@ -123,7 +104,11 @@ class CharacterController {
         (x, i) => x.name === "Unreal Take" && i != 0
       );
 
-      const retargetedAnimation = this.retargetAnimWithBlendshapes(this.character, myAnimation, signName);
+      const retargetedAnimation = this.retargetAnimWithBlendshapes(
+        this.character,
+        myAnimation,
+        signName
+      );
 
       myAnimation.dispose();
       myAnimation = retargetedAnimation;
@@ -165,23 +150,12 @@ class CharacterController {
                 key.value.z = 1;
               });
             }
-          } else if (targetedAnim.target.name === "morphTarget57") {
-            // console.log("morphTarget57", targetedAnim.animation._keys);
-            // Remove the morph target animation
-            // targetedAnim.animation._keys = [{}];
-          } else if (targetedAnim.target.name === "morphTarget58") {
-            // Remove the morph target animation
-            // targetedAnim.animation._keys = [];
           }
         }
       });
 
       // Rename the animationgroup to the signName
       myAnimation.name = signName;
-
-      // Blendshape van ogen uitzetten
-      // console.log("Disabling eye blendshapes f/or animation:", targetedAnim.animation);
-      // ogen zetten op camera
 
       return myAnimation;
     } catch (error) {
@@ -454,9 +428,6 @@ class CharacterController {
   // Add the animation to the root mesh and set its position
   addAnimationToRootMesh(animationGroup) {
     animationGroup.parent = this.rootMesh;
-
-    // Rotate the root mesh 90 degrees on the X axis
-    // this.rootMesh.rotation = new Vector3(Math.PI / 2, Math.PI, 0);
 
     // Adjust the position of the root mesh to be in the center of the scene
     this.rootMesh.position = new Vector3(0, 0, -0.25);

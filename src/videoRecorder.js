@@ -1,4 +1,4 @@
-// Enhanced video recorder with better quality options
+// Class to handle video recording in Babylon.js with configurable quality and codec support
 class VideoRecorder {
   constructor(engine, scene, canvas) {
     this.engine = engine;
