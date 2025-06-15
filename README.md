@@ -7,11 +7,11 @@ The Sign Blending Interface is a web application designed to allow users to crea
 *   **Interactive 3D Environment:** Visualize sign language animations on a 3D character model.
 *   **Sign Library:** A comprehensive library of available sign language animations that can be easily searched and selected.
 *   **Drag-and-Drop Sequence Builder:** Intuitive interface for building custom sign language sequences by dragging signs from the library into a sequence area.
-*   **Animation Playback Controls:
+*   **Animation Playback Controls:**
     *   **Play Sequence:** Initiate the playback of the assembled sign sequence.
     *   **Clear All:** Remove all signs from the current sequence.
     *   **Record Sequence:** Play the sequence while also recording the animation.
-*   **Blending Toggle:** Enable or disable smooth transitions between consecutive signs in a sequence to enhance visual fluidity.
+*   **Blending On/Off:** Enable or disable smooth transitions between consecutive signs in a sequence to enhance visual fluidity.
 *   **Babylon.js Integration:** Leverages the Babylon.js framework for efficient 3D rendering, animation management, and model loading.
 
 ## Technologies Used
@@ -62,3 +62,10 @@ The `AnimationController` class is responsible for managing animation playback a
 *   `cameraController.js`: Manages camera behavior and controls.
 *   `eyeBlinkController.js`: Controls eye blink animations for the character.
 *   `styles.css`: Contains the CSS styling for the user interface.
+
+## Video Recording
+The application includes a `VideoRecorder` class that allows users to record the animation sequence as a video. The recorder supports various quality presets and codecs, and can be configured to automatically stop after a specified duration.
+
+### Usage
+To record a sequence, click the "Record Sequence" button before playing the animation. The video will be downloaded automatically once the recording is complete.
+

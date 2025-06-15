@@ -109,11 +109,6 @@ class AnimationController {
           console.error("Failed to start recording:", error);
           this.recorder = null;
         }
-
-        // console.log("Starting recording...");
-        // const animationNames = signNames.join("-") + ".webm"; // Use the sign names as the filename
-        // this.recorder.startRecording(animationNames, 60);
-        // console.log("Recording started successfully", this.recorder);
       }
     }
 

@@ -68,7 +68,7 @@ Zinnen:
 https://signlab.mabbel.nl/?sequence=BESTE_REIZIGERS,INTERCITY,VAN,AMSTERDAM,VAN,KWART_VOOR,10,VERTREKT,VAN,PERRON,14,A
 https://signlab.mabbel.nl/?sequence=ZIN_1
 
-https://signlab.mabbel.nl/?sequence=BESTE_REIZIGERS,TREIN,5,VOOR,HALF,6,NAAR,DIEMEN,VERTRAAGD
+https://signlab.mabbel.nl/?sequence=BESTE_REIZIGERS,TREIN,VAN,5,VOOR,HALF,6,NAAR,DIEMEN,VERTRAAGD
 https://signlab.mabbel.nl/?sequence=ZIN_2
 
 https://signlab.mabbel.nl/?sequence=BESTE_REIZIGERS,SPRINTER,NAAR,HAARLEM,10,VOOR,3,VERTREKT,VAN,SPOOR,2
@@ -82,7 +82,7 @@ https://signlab.mabbel.nl/?sequence=ZIN_4
 https://signlab.mabbel.nl/?sequence=BESTE_REIZIGERS,INTERCITY,NAAR,GRONINGEN,HALF,2,VERTRAAGD
 https://signlab.mabbel.nl/?sequence=ZIN_5
 
-https://signlab.mabbel.nl/?sequence=BESTE_REIZIGERS,SPRINTER,NAAR,DEN_HAAG,KWART,VOOR,7,15,MINUTEN,VERTRAAGD
+https://signlab.mabbel.nl/?sequence=BESTE_REIZIGERS,SPRINTER,NAAR,DEN_HAAG,VAN,KWART,VOOR,7,15,MINUTEN,VERTRAAGD
 https://signlab.mabbel.nl/?sequence=ZIN_6
 
 https://signlab.mabbel.nl/?sequence=BESTE_REIZIGERS,TREIN,NAAR,DEN_HAAG,VERTREKT,10,VOOR,1
