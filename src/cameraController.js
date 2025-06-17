@@ -56,6 +56,16 @@ class CameraController {
 
     this.camera.target = sphere;
   }
+
+  getPosition() {
+    return this.camera.position;
+  }
+
+  setPosition(x, y, z) {
+    this.camera.position.x = x;
+    this.camera.position.y = y;
+    this.camera.position.z = z;
+  }
 }
 
 export default CameraController;
